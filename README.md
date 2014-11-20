@@ -54,7 +54,9 @@ Resulting Scripts
 With the information I've learned from before I've developed three seperate scripts
 
 getRootAttemptIPs => Outputs the number of authentication failures from an IP
+
 getInvalidUserIPs => Outputs the number of Invalid user failures from an IP
+
 getInvalidUserNames => Outputs all the invalid usernames IPs tried to use
 
 Bringing Down the Banhammer
