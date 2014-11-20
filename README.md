@@ -56,3 +56,15 @@ With the information I've learned from before I've developed three seperate scri
 getRootAttemptIPs => Outputs the number of authentication failures from an IP
 getInvalidUserIPs => Outputs the number of Invalid user failures from an IP
 getInvalidUserNames => Outputs all the invalid usernames IPs tried to use
+
+Bringing Down the Banhammer
+==================
+ Now that I have a list of all these IPs that are spamming me, I can simply add an IP address to a blacklist by
+ ```bash
+     sudo iptables -A INPUT -s <IP Address> -j DROP
+ ```
+ This will append the IP to the iptable and always drop any packets recieved from the noted IP address.
+ 
+ Long Term Solution
+ ==================
+ Unfortunately, I don't have the time to check the logs that often, so a utility called [fail2ban](https://help.ubuntu.com/community/Fail2ban) can be utilized. With this I can have IPs banned for too many bad authentications, in my case 5 within 30 minutes. While this won't prevent all unwanted requests, it will stop spammers such as 103.41.124.50 who had 33621 bad authentication errors.
