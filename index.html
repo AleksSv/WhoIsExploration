@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+
+    var ipgeoloc;
+    var dataArray = [];
+    var fndCountry;
+    var curCountry;
+    var curCount;
+
+
+
+    $.ajax
+    ({
+      type: 'GET',
+      url: "getIPgeoJSON.php",
+    })
+    .done(function(data)
+    { 
+      ipgeoloc = JSON.parse(data); 
+      initCountryArray();
+      google.load("visualization", "1", {packages:["geochart"], "callback":drawRegionsMap});
+      //google.setOnLoadCallback(drawRegionsMap);
+    }); 
+
+
+    //Initializes Array of Country Values
+    function initCountryArray()
+    {
+      
+      var InfoBar = ['Country', 'Root Access Attempts']
+
+
+      dataArray.push(InfoBar);
+
+      //Build Valid Country Array
+      for(ipgeo in ipgeoloc.ipsGeoloc)
+      {
+        curCountry = ipgeoloc.ipsGeoloc[ipgeo].country;
+        curCount = parseInt(ipgeoloc.ipsGeoloc[ipgeo].attempts);
+
+        if(curCountry != null && curCount != null)
+        {
+
+          fndCountry = findCountry(ipgeoloc.ipsGeoloc[ipgeo].country, dataArray);
+
+          if(fndCountry == -1)
+          {
+            dataArray.push([curCountry,curCount]);
+          }
+          else
+          {
+            dataArray[fndCountry][1] += curCount;
+          }
+        }
+      }
+    }
+
+    function findCountry(country, dataArray)
+    {
+      for (ob in dataArray)
+      {
+        if (dataArray[ob][0] == country)
+        { return ob; }
+      }
+
+      return -1;
+    }
+
+
+
+    </script>
+
+
+
+
+    <script type="text/javascript">
+
+
+
+      function drawRegionsMap() {
+
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body on>
+    <div id="regions_div" style="width: 100%; height: 100%;"></div>
+  </body>
+</html>

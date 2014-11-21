@@ -1,4 +1,3 @@
-count-Invalid Username
 2 aaa
 1 aaron
 1 abhishek
