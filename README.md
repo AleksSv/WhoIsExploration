@@ -19,6 +19,8 @@ However, I wanted to get the most important information from these log files, th
     sudo awk 'match($0,/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/) {print substr($0, RSTART, RLENGTH)}' /var/log/auth.log
 ```
 [awk](http://unixhelp.ed.ac.uk/CGI/man-cgi?awk) is another pattern scanning tool, however with the code above I can isolate regular expressions that I've found, the regular expression that I've written looks for <IP Address>.
+
+It is very important that you do apt-get install gawk
 ```vim
     115.236.179.140
 ```
@@ -70,3 +72,10 @@ Bringing Down the Banhammer
 Long Term Solution
 ==================
 Unfortunately, I don't have the time to check the logs that often, so a utility called [fail2ban](https://help.ubuntu.com/community/Fail2ban) can be utilized. With this I can have IPs banned for too many bad authentications, in my case 5 within 30 minutes. While this won't prevent all unwanted requests, it will stop spammers such as 103.41.124.50 who had 33621 bad authentication errors in just the last 3 days.
+
+
+So who were those IPs?
+===================
+A question remains of who exactly were those IPs located, where can spammers live to bother us without fear?
+
+There is a website http://ip-api.com/ which is a free and open geolocator API, with this we can learn more about the IPs that spammed me.
