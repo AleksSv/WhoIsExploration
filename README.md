@@ -1,5 +1,6 @@
-WhoIsExploration
+SpamWatch
 ================
+http://104.236.46.207/~aleks/spamWatch/index.html
 
 Initial Problem
 ================
@@ -71,7 +72,7 @@ Bringing Down the Banhammer
  
 Long Term Solution
 ==================
-Unfortunately, I don't have the time to check the logs that often, so a utility called [fail2ban](https://help.ubuntu.com/community/Fail2ban) can be utilized. With this I can have IPs banned for too many bad authentications, in my case 5 within 30 minutes. While this won't prevent all unwanted requests, it will stop spammers such as 103.41.124.50 who had 33621 bad authentication errors in just the last 3 days.
+Unfortunately, I don't have the time to check the logs that often, so a utility called [fail2ban](https://help.ubuntu.com/community/Fail2ban) can be utilized. With this I can have IPs banned for too many bad authentications, in my case 5 within 30 minutes. While this won't prevent all unwanted requests, it will stop spammers such as 103.41.124.50 who had 13446 bad authentication errors in just the last 3 days.
 
 
 So who were those IPs?
@@ -107,4 +108,5 @@ Finally, I used the [Google charts API](https://google-developers.appspot.com/ch
 Final Result
 ================================
 http://104.236.46.207/~aleks/spamWatch/index.html
+
 (Unfortunately I had to cook the books a bit, the curl requests came empty for the ips 103.41.124.xx's respective countries, however I looked up the whois and it was Hong Kong for all of them. So it definietly orginated from China, however the ip-api.com requests for some reason did not find information for it.)
