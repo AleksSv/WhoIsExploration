@@ -1,2 +1,0 @@
-#!/bin/bash
-grep 'Invalid user' /var/log/auth.log | awk 'match($0, /[A-Za-z]+ from [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/) {print substr($0, RSTART, RLENGTH)}' | awk 'match($0, /^[A-Za-z]+/) {print substr($0,RSTART,RLENGTH)}' | sort -n | uniq -c | sed -e 's/^[ \t]*//'
