@@ -79,3 +79,27 @@ So who were those IPs?
 A question remains of who exactly were those IPs located, where can spammers live to bother us without fear?
 
 There is a website http://ip-api.com/ which is a free and open geolocator API, with this we can learn more about the IPs that spammed me.
+
+However, I thought why not get that geolocation data straight from bash, so I wrote a bash script that would use curl to grab the geolocational data of each IP address.
+
+```bash
+#!/bin/bash
+FILE="ipget.csv"
+while read count ip; do
+        url=http://ip-api.com/csv/$ip
+        result=$(curl --request GET $url)
+        echo "$ip,$count,$url,$result"
+done >$FILE
+```
+This bash script results in the output ipget.csv which now contains an IP adress, a count of attempts, and country of origin.
+
+Converting to JSON
+=================
+My next goal was to convert this csv file to html friendly JSON data, this was implemented through getIPgeoJSON.php. This method would always output the JSON encoding of that CSV data to any empty GET request.
+
+One very useful PHP method was [fgetcsv](http://php.net/manual/en/function.fgetcsv.php) which converted a line in the CSV file to an array which each seperate value in its own index. This made it very simple building the JSON array construct.
+
+
+Visually Representing the Spammers
+===============================
+Finally, I used the [Google charts API](https://google-developers.appspot.com/chart/interactive/docs/gallery/geochart) to create a chart that shows where in the world all the requests are coming from. On completion of the AJAX request to getIPgeoJSON.php the javascript will dynamically build an array that accumulates the total attempts for each country found. 
