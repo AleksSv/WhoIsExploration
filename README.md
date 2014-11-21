@@ -91,7 +91,7 @@ while read count ip; do
         echo "$ip,$count,$url,$result"
 done >$FILE
 ```
-This bash script results in the output ipget.csv which now contains an IP adress, a count of attempts, and country of origin.
+This bash script results in the output ipget.csv which now contains an IP adress, a count of attempts, and country of origin among many other pieces of data.
 
 Converting to JSON
 =================
@@ -103,3 +103,8 @@ One very useful PHP method was [fgetcsv](http://php.net/manual/en/function.fgetc
 Visually Representing the Spammers
 ===============================
 Finally, I used the [Google charts API](https://google-developers.appspot.com/chart/interactive/docs/gallery/geochart) to create a chart that shows where in the world all the requests are coming from. On completion of the AJAX request to getIPgeoJSON.php the javascript will dynamically build an array that accumulates the total attempts for each country found. 
+
+Final Result
+================================
+http://104.236.46.207/~aleks/spamWatch/index.html
+(Unfortunately I had to cook the books a bit, the curl requests came empty for the ips 103.41.124.xx's respective countries, however I looked up the whois and it was Hong Kong for all of them. So it definietly orginated from China, however the ip-api.com requests for some reason did not find information for it.)
