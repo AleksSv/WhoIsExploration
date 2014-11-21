@@ -76,7 +76,7 @@ Unfortunately, I don't have the time to check the logs that often, so a utility 
 
 So who were those IPs?
 ===================
-A question remains of who exactly were those IPs located, where can spammers live to bother us without fear?
+A question remains of where exactly those IPs were located, where can spammers live to bother us without fear?
 
 There is a website http://ip-api.com/ which is a free and open geolocator API, with this we can learn more about the IPs that spammed me.
 
